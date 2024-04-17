@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  mysql:
+    container_name: mysql-email
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: emailSend
+    ports:
+      - "3310:3306"
+    volumes:
+      - mysql_email:/var/lib/mysql
+    networks:
+      - api-email
+
+  app:
+    container_name: api-email
+    image: matheusabd/sendemail
+    ports:
+      - "8080:8080"
+    networks:
+      - api-email
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/emailSend?createDatabaseIfNotExist=true
+      - spring.mail.username=${EMAIL_USER}
+      - spring.mail.password=${EMAIL_SEND}
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_email:
+
+networks:
+  api-email:
