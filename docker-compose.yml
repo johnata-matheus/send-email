@@ -22,11 +22,11 @@ services:
     networks:
       - api-email
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/emailSend?createDatabaseIfNotExist=true
-      - spring.datasource.username=postgres
-      - spring.datasource.password=root
-      - spring.mail.username=${EMAIL_USER}
-      - spring.mail.password=${EMAIL_SEND}
+        SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/emailSend?createDatabaseIfNotExist=true
+        SPRING_DATASOURCE_USERNAME: postgres
+        SPRING_DATASOURCE_PASSWORD: root
+        spring.mail.username: ${EMAIL_USER}
+        spring.mail.password: ${EMAIL_SEND}
     depends_on:
       - postgres
 
