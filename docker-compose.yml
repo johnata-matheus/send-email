@@ -16,7 +16,7 @@ services:
 
   app:
     container_name: api-email
-    image: matheusabd/sendemail
+    image: matheusabd/sendemail:1.0
     ports:
       - "8080:8080"
     networks:
